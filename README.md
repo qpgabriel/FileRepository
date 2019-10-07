@@ -1,36 +1,35 @@
-﻿### Video da Configuração com Eclipse Oxygen
-https://www.youtube.com/watch?v=5lha83ShQLo&feature=youtu.be
-
-### Configurações
-
-- Primeiramente importe o projeto, caso esteja usando o eclipse clique em file > import > General > Projects from File System or Archive
- - Em imported source coloque o caminho da pasta (workspace) em que a pasta do seu projeto está
-
-
-
-### Requisitos
+### Requirements
 - MYSQL Connector 5.1.47
 - Apache Tomcat v8.5
- 
-## Aviso Importante
-### Banco de Dados
-- Está configurado um banco de dados com nome 'webcamadas'
-```sql 
-CREATE TABLE pessoa (
-id INT NOT NULL auto_increment Primary Key,
-nome VARCHAR(50) NOT NULL,
-email VARCHAR(100) NOT NULL,
-tel VARCHAR(50) NOT NULL
-);
+## BD name: webcamadas
 
-CREATE TABLE endereco(
-id int NOT NULL auto_increment Primary Key,
-logradouro varchar(100),
-numero int,
-bairro varchar(45),
-cidade varchar(45),
-estado varchar(45),
-pessoa_id int,
-Foreign Key (pessoa_id) references pessoa(id)
-);
+-- Table structure for table `arquivo`
+CREATE TABLE `arquivo` (
+  `id` int(11) NOT NULL,
+  `titulo` varchar(30) COLLATE utf8_bin NOT NULL,
+  `conteudoTipo` varchar(20) COLLATE utf8_bin NOT NULL,
+  `autor` varchar(30) COLLATE utf8_bin NOT NULL,
+  `dataCriacao` date NOT NULL,
+  `arquivo` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+-- --------------------------------------------------------
+-- Table structure for table `user`
+CREATE TABLE `user` (
+  `username` varchar(30) COLLATE utf8_bin NOT NULL,
+  `password` varchar(20) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- Indexes for table `arquivo`
+ALTER TABLE `arquivo`
+  ADD PRIMARY KEY (`id`);
+
+-- Indexes for table `user`
+
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`username`);
+
+-- AUTO_INCREMENT for table `arquivo`
+ALTER TABLE `arquivo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
